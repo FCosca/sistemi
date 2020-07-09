@@ -1,4 +1,7 @@
 package web.backtospring.repositories;
 
-public interface FornitoreRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import web.backtospring.entities.Fornitore;
+
+public interface FornitoreRepository extends JpaRepository<Fornitore, String> {
 }

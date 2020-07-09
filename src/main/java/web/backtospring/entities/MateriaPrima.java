@@ -1,8 +1,10 @@
 package web.backtospring.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+@Entity
 public class MateriaPrima {
 
     @Id
