@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/data/jaxb"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bentornato</title>
+</head>
+<body>
+<div layout:fragment="content" class="container" >
+    <main role="main" class="container">
+        <div class="jumbotron">
+            <h1>Bentornato</h1>
+            <p class="lead">Questa è la tua pagina Personale</p>
+            <p Message example; th:text="${message}"></p>
+            <p Date example; th:text="${date}"></p>
+            <p sec:authorize="isAuthenticated()">Username: <span sec:authorize="isAuthenticated()" th:text="${#authentication.getPrincipal().getUsername()}"></span></p>
+            <div class="memberInformation">
+                <header> Member Information</header>
+                <p sec:authorize="isAuthenticated()">First Name : <span sec:authorize="isAuthenticated()" th:text="${members.firstName}"></span></p>
+                <p sec:authorize="isAuthenticated()">Last Name : <span sec:authorize="isAuthenticated()" th:text="${members.lastName}"></span></p>
+                <p sec:authorize="isAuthenticated()">e - mail : <span sec:authorize="isAuthenticated()" th:text="${members.email}"></span></p>
+            </div>
+            <a sec:authorize="!isAuthenticated()" class="btn btn-lg btn-primary" href="/register" role="button">Register &raquo;</a>
+            <a sec:authorize="!isAuthenticated()" class="btn btn-lg btn-primary" href="/login" role="button">Login &raquo;</a>
+            <a sec:authorize="isAuthenticated()" class="btn btn-lg btn-primary" href="/logout" role="button">Logout &raquo;</a>
+        </div>
+    </main>
+
+</div>
+</body>
+</html>
