@@ -23,6 +23,16 @@ public class FornitoreService {
         return fornitoreRepository.findFornitoreByPIVA(pIva);
     }//getByPIva
 
+    @Transactional(readOnly = true)
+    public Fornitore getByNome(String Nome){
+        return fornitoreRepository.findFornitoreByNome(Nome);
+    }//getByNome
+
+    @Transactional(readOnly = true)
+    public Fornitore getBySede(String sede){
+        return fornitoreRepository.findFornitoreBySede(sede);
+    }//getBySede
+
 
 
 

@@ -60,4 +60,6 @@ public class MateriaPrima {
     public void setMagazzino(String magazzino) {
         Magazzino = magazzino;
     }
+
+    public MateriaPrima(){}
 }

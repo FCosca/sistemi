@@ -3,7 +3,7 @@ package web.sistemi.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import web.sistemi.entities.Fornitore;
 
-import javax.validation.constraints.NotEmpty;
+
 import java.util.List;
 
 public interface FornitoreRepository extends JpaRepository<Fornitore, String> {
@@ -12,6 +12,10 @@ public interface FornitoreRepository extends JpaRepository<Fornitore, String> {
     List<Fornitore> findAll();
     
     Fornitore findFornitoreByPIVA(String PIVA);
+
+    Fornitore findFornitoreByNome(String nome);
+
+    Fornitore findFornitoreBySede(String sede);
     
     boolean existsByPIVA(String PIVA);
     

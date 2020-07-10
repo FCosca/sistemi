@@ -13,7 +13,6 @@
         <div class="jumbotron">
             <h1>Bentornato</h1>
             <p class="lead">Questa è la tua pagina Personale</p>
-            <p Message example; th:text="${message}"></p>
             <p Date example; th:text="${date}"></p>
 
             <p sec:authorize="isAuthenticated()">Username: <span sec:authorize="isAuthenticated()" th:text="${#authentication.getPrincipal().getUsername()}"></span></p>

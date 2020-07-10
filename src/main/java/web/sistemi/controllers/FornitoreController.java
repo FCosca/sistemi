@@ -30,6 +30,24 @@ public class FornitoreController {
         return new ResponseEntity<>(fornitore, HttpStatus.OK);
     }//getByPiva
 
+    @RequestMapping("/fornitori/{nome}")
+    public ResponseEntity getByNome(@PathVariable("Nome") String Nome){
+        Fornitore fornitore = fornitoreService.getByNome(Nome);
+        if(fornitore == null){
+            return new ResponseEntity<>("Nessun risultato!",HttpStatus.OK);
+        }//if
+        return new ResponseEntity<>(fornitore, HttpStatus.OK);
+    }//getByNome
+
+    @RequestMapping("/fornitori/{sede}")
+    public ResponseEntity getBySede(@PathVariable("sede") String sede){
+        Fornitore fornitore = fornitoreService.getBySede(sede);
+        if(fornitore == null){
+            return new ResponseEntity<>("Nessun risultato!",HttpStatus.OK);
+        }//if
+        return new ResponseEntity<>(fornitore, HttpStatus.OK);
+    }//getBySede
+
 
     @PostMapping("/fornitori")
     public ResponseEntity create(@RequestBody Fornitore fornitore) throws PivaGiaEsistenteException{
