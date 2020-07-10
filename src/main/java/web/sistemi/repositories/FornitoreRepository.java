@@ -6,8 +6,12 @@ import web.sistemi.entities.Fornitore;
 import java.util.List;
 
 public interface FornitoreRepository extends JpaRepository<Fornitore, String> {
+    
     @Override
     List<Fornitore> findAll();
+    
+    Fornitore findFornitoreByPIVA(String PIVA);
+    
+    
 
-
-}
+}//FornitoreRepository
