@@ -15,7 +15,7 @@
             <p class="lead">Questa è la tua pagina Personale</p>
             <p Message example; th:text="${message}"></p>
             <p Date example; th:text="${date}"></p>
-            <p th:text="${"\fornitori"}></p>
+
             <p sec:authorize="isAuthenticated()">Username: <span sec:authorize="isAuthenticated()" th:text="${#authentication.getPrincipal().getUsername()}"></span></p>
             <div class="memberInformation">
                 <header> Member Information</header>
