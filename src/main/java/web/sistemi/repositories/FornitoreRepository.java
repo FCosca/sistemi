@@ -12,6 +12,7 @@ public interface FornitoreRepository extends JpaRepository<Fornitore, String> {
     
     Fornitore findFornitoreByPIVA(String PIVA);
     
+    boolean existsByPIVA(PIVA);
     
 
 }//FornitoreRepository
