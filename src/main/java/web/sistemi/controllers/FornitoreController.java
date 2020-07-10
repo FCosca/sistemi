@@ -28,4 +28,15 @@ public class FornitoreController {
         return new ResponseEntity<>(fornitore, HttpStatus.OK);
     }//getByPiva
 
+    @PostMapping("/fornitori")
+    public ResponseEntity create(@RequestBody Fornitore fornitore) throws PIVAGiaEsistenteException{
+        Fornitore f = null;
+        try{
+            f = fornitoreService.addFornitore(fornitore);
+        }catch(PIVAGiaEsistenteException e){
+            return new ResponseEntity<>("PIVA già esistente", HttpStaus.BAD_REQUEST);
+        }//try
+        return new ResponseEntity<>(f, HttpStatus.OK);
+    }//create
+    
 }//FornitoreController
