@@ -25,9 +25,9 @@ public class FornitoreService {
 
 
 
-    @Transactional(readOnly = false)
-    public void AddFornitore(String PIVA, String nome, String sede){
+    @Transactional
+    public Fornitore addFornitore(Fornitore fornitore){
+        return fornitoreRepository.save(fornitore);
+    }//addFornitore
 
-    }
-
-}
+}//FornitoreService
