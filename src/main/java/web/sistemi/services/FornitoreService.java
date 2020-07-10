@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.sistemi.entities.Fornitore;
 import web.sistemi.repositories.FornitoreRepository;
+import web.sistemi.supporto.PivaGiaEsistenteException;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class FornitoreService {
 
 
     @Transactional
-    public Fornitore addFornitore(Fornitore fornitore) throws PivaGiaEsistenteException{
+    public Fornitore addFornitore(Fornitore fornitore) throws PivaGiaEsistenteException {
         if(fornitoreRepository.existsByPIVA(fornitore.getPIVA())){
             throw new PivaGiaEsistenteException();
         }//if

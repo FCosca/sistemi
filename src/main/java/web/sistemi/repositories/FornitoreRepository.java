@@ -3,6 +3,7 @@ package web.sistemi.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import web.sistemi.entities.Fornitore;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 public interface FornitoreRepository extends JpaRepository<Fornitore, String> {
@@ -12,7 +13,7 @@ public interface FornitoreRepository extends JpaRepository<Fornitore, String> {
     
     Fornitore findFornitoreByPIVA(String PIVA);
     
-    boolean existsByPIVA(PIVA);
+    boolean existsByPIVA(String PIVA);
     
 
 }//FornitoreRepository

@@ -6,7 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import web.sistemi.entities.Fornitore;
 import web.sistemi.services.FornitoreService;
+import web.sistemi.supporto.PivaGiaEsistenteException;
 
 @Controller
 public class FornitoreController {
@@ -29,12 +34,12 @@ public class FornitoreController {
     }//getByPiva
 
     @PostMapping("/fornitori")
-    public ResponseEntity create(@RequestBody Fornitore fornitore) throws PIVAGiaEsistenteException{
+    public ResponseEntity create(@RequestBody Fornitore fornitore) throws PivaGiaEsistenteException{
         Fornitore f = null;
         try{
             f = fornitoreService.addFornitore(fornitore);
-        }catch(PIVAGiaEsistenteException e){
-            return new ResponseEntity<>("PIVA già esistente", HttpStaus.BAD_REQUEST);
+        }catch(PivaGiaEsistenteException e){
+            return new ResponseEntity<>("PIVA già esistente", HttpStatus.BAD_REQUEST);
         }//try
         return new ResponseEntity<>(f, HttpStatus.OK);
     }//create
