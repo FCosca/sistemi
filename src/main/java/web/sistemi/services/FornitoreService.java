@@ -17,11 +17,10 @@ public class FornitoreService {
     @Transactional(readOnly = true)
     public List<Fornitore> allFornitore() { return fornitoreRepository.findAll();}
 
-//    @Transactional(readOnly = true)
- //   public List<Fornitore> allFornitore(String PIVA){ return fornitoreRepository.findAll();}
-
-//    @Transactional(readOnly = true)
-//    public List<Fornitore> allFornitore(String nome){return fornitoreRepository.findAll();}
+    @Transactional(readOnly = true)
+    public Fornitore getByPIva(String pIva){
+        return fornitoreRepository.findFornitoreByPIVA(pIva);
+    }//getByPIva
 
 
 
