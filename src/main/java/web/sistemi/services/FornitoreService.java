@@ -26,7 +26,10 @@ public class FornitoreService {
 
 
     @Transactional
-    public Fornitore addFornitore(Fornitore fornitore){
+    public Fornitore addFornitore(Fornitore fornitore) throws PivaGiaEsistenteException{
+        if(fornitoreRepository.existsByPIVA){
+            throw new PivaGiaEsistenteException();
+        }//if
         return fornitoreRepository.save(fornitore);
     }//addFornitore
 
