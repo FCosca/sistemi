@@ -17,13 +17,11 @@ public class FornitoreController {
     private FornitoreService fornitoreService;
 
     @RequestMapping("/fornitori")
-    @GetMapping("/fornitori")
     public ResponseEntity getAll() {
         return new ResponseEntity<>(fornitoreService.allFornitore(), HttpStatus.OK);
     }//getAll
 
     @RequestMapping("/fornitori/{PIVA}")
-    @GetMapping("/fornitori/{PIVA}")
     public ResponseEntity getByPiva(@PathVariable("PIVA") String PIVA){
         Fornitore fornitore = fornitoreService.getByPIva(PIVA);
         if(fornitore == null){

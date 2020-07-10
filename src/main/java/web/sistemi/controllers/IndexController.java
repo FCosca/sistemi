@@ -24,6 +24,7 @@ public class IndexController {
         model.addAttribute("message", "Hello everyone, we are go to back to Spring with together");
         model.addAttribute("date", new Date());
         model.addAttribute("members", memberRepository.getOne(principal.getName()));
+
         return "index";
     }
 }
