@@ -14,10 +14,18 @@ public class FornitoreController {
     @Autowired
     private FornitoreService fornitoreService;
 
-    @GetMapping("/Fornitore")
+    @GetMapping("/fornitori")
     public ResponseEntity getAll() {
         return new ResponseEntity<>(fornitoreService.allFornitore(), HttpStatus.OK);
-    }
+    }//getAll
 
+    @GetMapping("/fornitori/{PIVA}")
+    public ResponseEntity getByPiva(@PathVariable("PIVA") String PIVA){
+        Fornitore fornitore = fornitoreService.getByPIva(PIVA);
+        if(fornitore == null){
+            return new ResponseEntity<>("Nessun risultato!",HttpStatus.OK);
+        }//if
+        return new ResponseEntity<>(fornitore, HttpStatus.OK);
+    }//getByPiva
 
-}
+}//FornitoreController
