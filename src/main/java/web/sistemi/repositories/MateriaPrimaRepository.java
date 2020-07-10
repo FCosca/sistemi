@@ -1,7 +1,7 @@
-package web.backtospring.repositories;
+package web.sistemi.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import web.backtospring.entities.MateriaPrima;
+import web.sistemi.entities.MateriaPrima;
 
 public interface MateriaPrimaRepository extends JpaRepository<MateriaPrima, Integer> {
 }

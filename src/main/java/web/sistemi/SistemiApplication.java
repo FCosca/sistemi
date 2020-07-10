@@ -1,13 +1,13 @@
-package web.backtospring;
+package web.sistemi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BacktospringApplication {
+public class SistemiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BacktospringApplication.class, args);
+		SpringApplication.run(SistemiApplication.class, args);
 	}
 
 }

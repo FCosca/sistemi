@@ -1,7 +1,7 @@
-package web.backtospring.repositories;
+package web.sistemi.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import web.backtospring.entities.Role;
+import web.sistemi.entities.Role;
 
 public interface RoleRepository extends JpaRepository<Role, String> {
 

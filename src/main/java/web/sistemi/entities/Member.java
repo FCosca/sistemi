@@ -1,4 +1,4 @@
-package web.backtospring.entities;
+package web.sistemi.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

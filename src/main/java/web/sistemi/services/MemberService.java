@@ -1,11 +1,11 @@
-package web.backtospring.services;
+package web.sistemi.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import web.backtospring.entities.Member;
-import web.backtospring.entities.Role;
-import web.backtospring.repositories.MemberRepository;
+import web.sistemi.entities.Member;
+import web.sistemi.entities.Role;
+import web.sistemi.repositories.MemberRepository;
 
 import java.util.ArrayList;
 import java.util.List;

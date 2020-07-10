@@ -1,7 +1,7 @@
-package web.backtospring.repositories;
+package web.sistemi.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import web.backtospring.entities.Member;
+import web.sistemi.entities.Member;
 
 public interface MemberRepository extends JpaRepository<Member, String> {
 
