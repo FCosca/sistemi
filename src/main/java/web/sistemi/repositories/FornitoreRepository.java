@@ -13,9 +13,9 @@ public interface FornitoreRepository extends JpaRepository<Fornitore, String> {
     
     Fornitore findFornitoreByPIVA(String PIVA);
 
-    Fornitore findFornitoreByNome(String nome);
+    List<Fornitore> findByNome(String nome);
 
-    Fornitore findFornitoreBySede(String sede);
+    List<Fornitore> findBySede(String sede);
     
     boolean existsByPIVA(String PIVA);
     
