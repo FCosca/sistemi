@@ -24,13 +24,13 @@ public class FornitoreService {
     }//getByPIva
 
     @Transactional(readOnly = true)
-    public Fornitore getByNome(String Nome){
-        return fornitoreRepository.findFornitoreByNome(Nome);
+    public List<Fornitore> getByNome(String Nome){
+        return fornitoreRepository.findByNome(Nome);
     }//getByNome
 
     @Transactional(readOnly = true)
-    public Fornitore getBySede(String sede){
-        return fornitoreRepository.findFornitoreBySede(sede);
+    public List<Fornitore> getBySede(String sede){
+        return fornitoreRepository.findBySede(sede);
     }//getBySede
 
 
