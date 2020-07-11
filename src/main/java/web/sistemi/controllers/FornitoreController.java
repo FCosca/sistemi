@@ -30,22 +30,22 @@ public class FornitoreController {
         return new ResponseEntity<>(fornitore, HttpStatus.OK);
     }//getByPiva
 
-    @RequestMapping("/fornitori/{nome}")
+    @RequestMapping("/fornitori/bynome/{nome}")
     public ResponseEntity getByNome(@PathVariable("Nome") String Nome){
-        Fornitore fornitore = fornitoreService.getByNome(Nome);
-        if(fornitore == null){
+        List<Fornitore> fornitori = fornitoreService.getByNome(Nome);
+        if(fornitori.size() == 0){
             return new ResponseEntity<>("Nessun risultato!",HttpStatus.OK);
         }//if
-        return new ResponseEntity<>(fornitore, HttpStatus.OK);
+        return new ResponseEntity<>(fornitori, HttpStatus.OK);
     }//getByNome
 
-    @RequestMapping("/fornitori/{sede}")
+    @RequestMapping("/fornitori/bysede/{sede}")
     public ResponseEntity getBySede(@PathVariable("sede") String sede){
-        Fornitore fornitore = fornitoreService.getBySede(sede);
-        if(fornitore == null){
+        List<Fornitore> fornitori = fornitoreService.getBySede(sede);
+        if(fornitori.size() == 0){
             return new ResponseEntity<>("Nessun risultato!",HttpStatus.OK);
         }//if
-        return new ResponseEntity<>(fornitore, HttpStatus.OK);
+        return new ResponseEntity<>(fornitori, HttpStatus.OK);
     }//getBySede
 
 
