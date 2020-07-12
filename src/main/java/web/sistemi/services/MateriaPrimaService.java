@@ -24,10 +24,10 @@ public class MateriaPrimaService {
     //Inoltre aggiungi nel repository di materia prima l'existsByCodice(String codice)
     //Se non vuoi l'eccezione lascia tutto come prima
     @Transactional(readOnly = true)
-    public MateriaPrima getByCodice(int Codice) throws MateriaPrimaInesistenteException {
-        if(!(materiaPrimaRepository.existsByCodice(Codice))){
+    public MateriaPrima getByCodice(int codice) throws MateriaPrimaInesistenteException {
+        if(!(materiaPrimaRepository.existsByCodice(codice))){
             throw new MateriaPrimaInesistenteException();
         }//if
-        return materiaPrimaRepository.findMateriaPrimaByCodice(Codice);
+        return materiaPrimaRepository.findMateriaPrimaByCodice(codice);
     }//getByCodice
 }

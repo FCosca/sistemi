@@ -10,7 +10,7 @@ public interface MateriaPrimaRepository extends JpaRepository<MateriaPrima, Inte
     @Override
     List<MateriaPrima> findAll();
 
-    MateriaPrima findMateriaPrimaByCodice(int Codice);
+    MateriaPrima findMateriaPrimaByCodice(int codice);
 
-    boolean existsByCodice(int Codice);
+    boolean existsByCodice(int codice);
 }

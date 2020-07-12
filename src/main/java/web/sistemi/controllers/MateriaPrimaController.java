@@ -24,10 +24,10 @@ public class MateriaPrimaController {
     //Se vuoi gestirlo cosi va bene, se invece vuoi lanciare un'eccezione vedi controller nel quale lo abbiamo fatto
     //Nota: i nomi delle variabili vanno scritte in minuscolo
     @RequestMapping("/materiaPrima/{Codice}")
-    public ResponseEntity getByCodice(@PathVariable("Codice") int Codice){
+    public ResponseEntity getByCodice(@PathVariable("codice") int codice){
         MateriaPrima materiaPrima = null;
         try{
-            materiaPrima = materiaPrimaService.getByCodice(Codice);
+            materiaPrima = materiaPrimaService.getByCodice(codice);
         }catch(MateriaPrimaInesistenteException e){
             return new ResponseEntity<>("MateriaPrima inesistente", HttpStatus.BAD_REQUEST);
         }//try
