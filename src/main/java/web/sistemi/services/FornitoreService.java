@@ -50,7 +50,8 @@ public class FornitoreService {
         if(!fornitoreRepository.existsByPIVA(fornitore.getPIVA())){
             throw new PivaNonEsiste();
             }
-        return fornitoreRepository.delete(fornitore);
+        fornitoreRepository.delete(fornitore);
+        return fornitore;
        // }
     }
 
