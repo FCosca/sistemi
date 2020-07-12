@@ -10,6 +10,7 @@ import web.sistemi.entities.MateriaPrima;
 import web.sistemi.services.MateriaPrimaService;
 import web.sistemi.supporto.MateriaPrimaInesistenteException;
 
+
 @Controller
 public class MateriaPrimaController {
 
@@ -37,3 +38,5 @@ public class MateriaPrimaController {
 
 
 }
+
+

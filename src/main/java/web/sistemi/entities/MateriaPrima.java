@@ -9,7 +9,7 @@ public class MateriaPrima {
 
     @Id
     @NotEmpty
-    private Integer Codice;
+    private Integer codice;
 
     @NotEmpty
     private String Descrizione;
@@ -22,7 +22,7 @@ public class MateriaPrima {
 
 
     public MateriaPrima(Integer codice, String descrizione, Integer disponibilita, String magazzino) {
-        this.Codice = codice;
+        this.codice = codice;
         this.Descrizione = descrizione;
         this.Disponibilita = disponibilita;
         this.Magazzino = magazzino;
@@ -30,11 +30,11 @@ public class MateriaPrima {
 
 
     public Integer getCodice() {
-        return Codice;
+        return codice;
     }
 
     public void setCodice(Integer codice) {
-        Codice = codice;
+        codice = codice;
     }
 
     public String getDescrizione() {

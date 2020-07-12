@@ -14,3 +14,4 @@ public interface MateriaPrimaRepository extends JpaRepository<MateriaPrima, Inte
 
     boolean existsByCodice(int codice);
 }
+
