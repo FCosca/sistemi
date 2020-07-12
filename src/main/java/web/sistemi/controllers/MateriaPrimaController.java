@@ -20,6 +20,8 @@ public class MateriaPrimaController {
         return new ResponseEntity<>(materiaPrimaService.allMateriaPrima(), HttpStatus.OK);
     }//getAll
 
+    //Se vuoi gestirlo cosi va bene, se invece vuoi lanciare un'eccezione vedi controller nel quale lo abbiamo fatto
+    //Nota: i nomi delle variabili vanno scritte in minuscolo
     @RequestMapping("/materiaPrima/{Codice}")
     public ResponseEntity getByCodice(@PathVariable("Codice") String Codice){
         MateriaPrima materiaPrima = materiaPrimaService.getByCodice(Codice);
