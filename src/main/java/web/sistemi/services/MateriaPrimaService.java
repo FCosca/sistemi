@@ -18,8 +18,13 @@ public class MateriaPrimaService {
     @Transactional(readOnly = true)
     public List<MateriaPrima> allMateriaPrima() { return materiaPrimaRepository.findAll();}
 
+    
+    //Ho aggiunto un'eccezione, crea la classe con lo stesso nome(come fatto per l'altra eccezione) nel package supporto e poi fa import qui.
     @Transactional(readOnly = true)
-    public MateriaPrima getByCodice(String Codice){
-        return materiaPrimaRepository.findMateriaPrimaByCodice(Codice);
+    public MateriaPrima getByCodice(String codice) throws MateriaPrimaInesistenteException{ 
+        if(!(materiaPrimaRepository.existsByCodice(codice))){
+            throw new MateriaPrimaInesistenteException();
+        }//if
+        return materiaPrimaRepository.findMateriaPrimaByCodice(codice);
     }//getByCodice
 }
