@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 public class Fornitore {
 
     @NotEmpty
-    private String Nome;
+    private String nome;
 
     @NotEmpty
     private String sede;
@@ -18,17 +18,17 @@ public class Fornitore {
     private String PIVA;
 
     public Fornitore(String nome, String sede, String piva) {
-        this.Nome = nome;
+        this.nome = nome;
         this.sede = sede;
         this.PIVA = piva;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        this.nome = nome;
     }
 
     public String getSede() {

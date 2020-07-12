@@ -10,6 +10,8 @@ import web.sistemi.entities.Fornitore;
 import web.sistemi.services.FornitoreService;
 import web.sistemi.supporto.PivaGiaEsistenteException;
 
+import java.util.List;
+
 @Controller
 public class FornitoreController {
 
