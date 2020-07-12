@@ -2,7 +2,9 @@ package web.sistemi.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
 public class MateriaPrima {
@@ -12,20 +14,22 @@ public class MateriaPrima {
     private Integer codice;
 
     @NotEmpty
-    private String Descrizione;
+    private String descrizione;
 
     @NotEmpty
-    private Integer Disponibilita;
+    private Integer disponibilita;
 
     @NotEmpty
-    private String Magazzino;
+    private String magazzino;
 
+    @ManyToMany(mappedBy = "materiaPrima")
+    private List<Fornitore> fornitore;
 
     public MateriaPrima(Integer codice, String descrizione, Integer disponibilita, String magazzino) {
         this.codice = codice;
-        this.Descrizione = descrizione;
-        this.Disponibilita = disponibilita;
-        this.Magazzino = magazzino;
+        this.descrizione = descrizione;
+        this.disponibilita = disponibilita;
+        this.magazzino = magazzino;
     }
 
 
@@ -34,31 +38,30 @@ public class MateriaPrima {
     }
 
     public void setCodice(Integer codice) {
-        codice = codice;
+        this.codice = codice;
     }
 
     public String getDescrizione() {
-        return Descrizione;
+        return descrizione;
     }
 
     public void setDescrizione(String descrizione) {
-        Descrizione = descrizione;
+        this.descrizione = descrizione;
     }
 
     public Integer getDisponibilita() {
-        return Disponibilita;
+        return disponibilita;
     }
 
-    public void setDisponibilita(Integer disponibilita) {
-        Disponibilita = disponibilita;
+    public void setDisponibilita(Integer disponibilita) {this.disponibilita = disponibilita;
     }
 
     public String getMagazzino() {
-        return Magazzino;
+        return magazzino;
     }
 
     public void setMagazzino(String magazzino) {
-        Magazzino = magazzino;
+        this.magazzino = magazzino;
     }
 
     public MateriaPrima(){}

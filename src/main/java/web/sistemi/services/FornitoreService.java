@@ -52,7 +52,7 @@ public class FornitoreService {
             }
         fornitoreRepository.delete(fornitore);
         return fornitore;
-       // }
+
     }
 
 }//FornitoreService

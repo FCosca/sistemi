@@ -1,15 +1,18 @@
 package web.sistemi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import web.sistemi.entities.Member;
 import web.sistemi.repositories.MemberRepository;
 import web.sistemi.services.MemberService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class memberController {
@@ -42,4 +45,18 @@ public class memberController {
         model.addAttribute("success", true);
         return "views/loginForm";
     }
-}
+
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        System.out.println("User has authorities: " + userDetails.getAuthorities());
+        return authentication.getName();
+    }
+
+
+    }
+
+
+
+

@@ -35,8 +35,8 @@ public class FornitoreController {
     }//getByPiva
 
     @RequestMapping("/fornitori/bynome/{nome}")
-    public ResponseEntity getByNome(@PathVariable("Nome") String Nome){
-        List<Fornitore> fornitori = fornitoreService.getByNome(Nome);
+    public ResponseEntity getByNome(@PathVariable("nome") String nome){
+        List<Fornitore> fornitori = fornitoreService.getByNome(nome);
         if(fornitori.size() == 0){
             return new ResponseEntity<>("Nessun risultato!",HttpStatus.OK);
         }//if
@@ -66,7 +66,7 @@ public class FornitoreController {
 
 
 
-    @DeleteMapping("/fornitori/delete/")
+    @DeleteMapping("/fornitori/delete/{PIVA}")
     public ResponseEntity delete(@RequestBody Fornitore fornitore) throws PivaNonEsiste {
         Fornitore f = null;
         try{
@@ -78,5 +78,7 @@ public class FornitoreController {
 
 
     }
+
+
     
 }//FornitoreController

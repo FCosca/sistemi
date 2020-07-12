@@ -1,8 +1,8 @@
 package web.sistemi.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
 public class Fornitore {
@@ -16,6 +16,13 @@ public class Fornitore {
     @Id
     @NotEmpty
     private String PIVA;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="RFOMP", joinColumns = {
+            @JoinColumn(name ="Fornitore_PIVA", referencedColumnName = "PIVA")}, inverseJoinColumns = {
+            @JoinColumn(name = "MATERIAPRIMA_CODICE", referencedColumnName = "codice")})
+    private List<MateriaPrima> materiaPrima;
+
 
     public Fornitore(String nome, String sede, String piva) {
         this.nome = nome;
