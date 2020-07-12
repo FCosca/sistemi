@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import web.sistemi.entities.MateriaPrima;
 import web.sistemi.services.MateriaPrimaService;
+import web.sistemi.supporto.MateriaPrimaInesistenteException;
 
 @Controller
 public class MateriaPrimaController {
@@ -23,7 +24,7 @@ public class MateriaPrimaController {
     //Se vuoi gestirlo cosi va bene, se invece vuoi lanciare un'eccezione vedi controller nel quale lo abbiamo fatto
     //Nota: i nomi delle variabili vanno scritte in minuscolo
     @RequestMapping("/materiaPrima/{Codice}")
-    public ResponseEntity getByCodice(@PathVariable("Codice") String Codice){
+    public ResponseEntity getByCodice(@PathVariable("Codice") int Codice) throws MateriaPrimaInesistenteException {
         MateriaPrima materiaPrima = materiaPrimaService.getByCodice(Codice);
         if(materiaPrima == null){
             return new ResponseEntity<>("Nessun Risultato!", HttpStatus.OK);

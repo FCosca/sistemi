@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import web.sistemi.entities.MateriaPrima;
 import web.sistemi.repositories.MateriaPrimaRepository;
+import web.sistemi.supporto.MateriaPrimaInesistenteException;
 
 import java.util.List;
 
@@ -23,10 +24,10 @@ public class MateriaPrimaService {
     //Inoltre aggiungi nel repository di materia prima l'existsByCodice(String codice)
     //Se non vuoi l'eccezione lascia tutto come prima
     @Transactional(readOnly = true)
-    public MateriaPrima getByCodice(String codice) throws MateriaPrimaInesistenteException{ 
-        if(!(materiaPrimaRepository.existsByCodice(codice))){
+    public MateriaPrima getByCodice(int Codice) throws MateriaPrimaInesistenteException {
+        if(!(materiaPrimaRepository.existsByCodice(Codice))){
             throw new MateriaPrimaInesistenteException();
         }//if
-        return materiaPrimaRepository.findMateriaPrimaByCodice(codice);
+        return materiaPrimaRepository.findMateriaPrimaByCodice(Codice);
     }//getByCodice
 }
