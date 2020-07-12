@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import web.sistemi.entities.Fornitore;
 import web.sistemi.repositories.FornitoreRepository;
 import web.sistemi.supporto.PivaGiaEsistenteException;
+import web.sistemi.supporto.PivaNonEsiste;
 
 import java.util.List;
 
@@ -43,5 +44,14 @@ public class FornitoreService {
         }//if
         return fornitoreRepository.save(fornitore);
     }//addFornitore
+
+    @Transactional
+    public Fornitore deleteFornitore(Fornitore fornitore) throws PivaNonEsiste{
+        if(!fornitoreRepository.existsByPIVA(fornitore.getPIVA())){
+            throw new PivaNonEsiste();
+            }
+        return fornitoreRepository.delete(fornitore);
+        }
+    }
 
 }//FornitoreService

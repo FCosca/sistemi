@@ -10,7 +10,8 @@ public interface FornitoreRepository extends JpaRepository<Fornitore, String> {
     
     @Override
     List<Fornitore> findAll();
-    
+
+
     Fornitore findFornitoreByPIVA(String PIVA);
 
     List<Fornitore> findByNome(String nome);

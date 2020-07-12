@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import web.sistemi.entities.Fornitore;
 import web.sistemi.services.FornitoreService;
 import web.sistemi.supporto.PivaGiaEsistenteException;
+import web.sistemi.supporto.PivaNonEsiste;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class FornitoreController {
@@ -61,5 +63,20 @@ public class FornitoreController {
         }//try
         return new ResponseEntity<>(f, HttpStatus.OK);
     }//create
+
+
+
+    @DeleteMapping("/fornitori/delete/{PIVA}")
+    public ResponseEntity delete(@RequestBody Fornitore fornitore) throws PivaNonEsiste {
+        Fornitore f = null;
+        try{
+            f = fornitoreService.deleteFornitore(fornitore);
+        }catch (PivaNonEsiste e){
+            return new ResponseEntity<>( "impossibile eliminarlo ", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(f, HttpStatus.OK);
+
+
+    }
     
 }//FornitoreController
