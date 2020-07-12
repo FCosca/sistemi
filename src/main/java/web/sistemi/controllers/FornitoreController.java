@@ -66,7 +66,7 @@ public class FornitoreController {
 
 
 
-    @DeleteMapping("/fornitori/delete/{PIVA}")
+    @DeleteMapping("/fornitori/delete/")
     public ResponseEntity delete(@RequestBody Fornitore fornitore) throws PivaNonEsiste {
         Fornitore f = null;
         try{
