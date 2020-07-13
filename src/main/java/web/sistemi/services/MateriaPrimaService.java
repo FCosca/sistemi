@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import web.sistemi.entities.Fornitore;
 import web.sistemi.entities.MateriaPrima;
 import web.sistemi.repositories.MateriaPrimaRepository;
 import web.sistemi.supporto.MateriaPrimaInesistenteException;
@@ -31,4 +32,7 @@ public class MateriaPrimaService {
         }//if
         return materiaPrimaRepository.findMateriaPrimaByCodice(codice);
     }//getByCodice
+
+
+
 }

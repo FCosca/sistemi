@@ -25,13 +25,20 @@ public class MateriaPrima {
     @ManyToMany(mappedBy = "materiaPrima")
     private List<Fornitore> fornitore;
 
-    public MateriaPrima(Integer codice, String descrizione, Integer disponibilita, String magazzino) {
+    @ManyToMany(mappedBy = "materiaPrima")
+    private List<OrdineMateriaPrima> ordineMateriaPrima;
+
+
+
+
+
+
+    public MateriaPrima(Integer codice,  String descrizione,  Integer disponibilita,  String magazzino){
         this.codice = codice;
         this.descrizione = descrizione;
         this.disponibilita = disponibilita;
         this.magazzino = magazzino;
     }
-
 
     public Integer getCodice() {
         return codice;
@@ -53,7 +60,8 @@ public class MateriaPrima {
         return disponibilita;
     }
 
-    public void setDisponibilita(Integer disponibilita) {this.disponibilita = disponibilita;
+    public void setDisponibilita(Integer disponibilita) {
+        this.disponibilita = disponibilita;
     }
 
     public String getMagazzino() {

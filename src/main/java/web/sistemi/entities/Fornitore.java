@@ -17,17 +17,28 @@ public class Fornitore {
     @NotEmpty
     private String PIVA;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="RFOMP", joinColumns = {
-            @JoinColumn(name ="Fornitore_PIVA", referencedColumnName = "PIVA")}, inverseJoinColumns = {
-            @JoinColumn(name = "MATERIAPRIMA_CODICE", referencedColumnName = "codice")})
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(
+            name="FORNITORE_MATERIAPRIMA",
+            joinColumns = {@JoinColumn(name ="FORNITORE_PIVA")},
+            inverseJoinColumns = {@JoinColumn(name = "MATERIAPRIMA_CODICE")})
     private List<MateriaPrima> materiaPrima;
 
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ORDINEMATERIAPRIMA_CODICE")
+    private OrdineMateriaPrima ordineMateriaPrima;
 
-    public Fornitore(String nome, String sede, String piva) {
+
+
+
+
+    public Fornitore(String nome, String sede, String piva){
         this.nome = nome;
         this.sede = sede;
         this.PIVA = piva;
+    }
+
+    public Fornitore(){
     }
 
     public String getNome() {
@@ -54,7 +65,6 @@ public class Fornitore {
         this.PIVA = PIVA;
     }
 
-    public Fornitore(){
 
-    }
+
 }
