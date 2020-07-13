@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.sistemi.entities.Fornitore;
-import web.sistemi.entities.MateriaPrima;
 import web.sistemi.repositories.FornitoreRepository;
 import web.sistemi.supporto.PivaGiaEsistenteException;
 import web.sistemi.supporto.PivaNonEsiste;
