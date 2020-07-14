@@ -2,19 +2,20 @@ package web.sistemi.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 public class OrdineMateriaPrima {
 
     @Id
-    @NotEmpty
+    @NotNull
     private Integer codice;
 
     @NotEmpty
     private String descrizione;
 
-    @NotEmpty
+    @NotNull
     private Integer quantita;
 
 
