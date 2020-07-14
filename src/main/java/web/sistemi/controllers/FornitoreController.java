@@ -14,18 +14,19 @@ import web.sistemi.supporto.PivaNonEsiste;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 public class FornitoreController {
 
     @Autowired
     private FornitoreService fornitoreService;
 
-    @RequestMapping("/fornitori")
+
+    @GetMapping("/fornitori")
     public ResponseEntity getAll() {
         return new ResponseEntity<>(fornitoreService.allFornitore(), HttpStatus.OK);
     }//getAll
 
-    @RequestMapping("/fornitori/{PIVA}")
+    @GetMapping("/fornitori/{PIVA}")
     public ResponseEntity getByPiva(@PathVariable("PIVA") String PIVA){
         Fornitore fornitore = fornitoreService.getByPIva(PIVA);
         if(fornitore == null){
@@ -34,7 +35,7 @@ public class FornitoreController {
         return new ResponseEntity<>(fornitore, HttpStatus.OK);
     }//getByPiva
 
-    @RequestMapping("/fornitori/bynome/{nome}")
+    @GetMapping("/fornitori/bynome/{nome}")
     public ResponseEntity getByNome(@PathVariable("nome") String nome){
         List<Fornitore> fornitori = fornitoreService.getByNome(nome);
         if(fornitori.size() == 0){
@@ -43,7 +44,7 @@ public class FornitoreController {
         return new ResponseEntity<>(fornitori, HttpStatus.OK);
     }//getByNome
 
-    @RequestMapping("/fornitori/bysede/{sede}")
+    @GetMapping("/fornitori/bysede/{sede}")
     public ResponseEntity getBySede(@PathVariable("sede") String sede){
         List<Fornitore> fornitori = fornitoreService.getBySede(sede);
         if(fornitori.size() == 0){
@@ -53,7 +54,7 @@ public class FornitoreController {
     }//getBySede
 
 
-    @PostMapping("/fornitori")
+    @PostMapping("/fornitori/add")
     public ResponseEntity create(@RequestBody Fornitore fornitore) throws PivaGiaEsistenteException{
         Fornitore f = null;
         try{

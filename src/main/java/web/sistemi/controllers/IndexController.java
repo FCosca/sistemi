@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import web.sistemi.entities.Fornitore;
 import web.sistemi.entities.Member;
 import web.sistemi.repositories.MemberRepository;
 
@@ -17,7 +18,7 @@ public class IndexController {
     MemberRepository memberRepository;
 
     @GetMapping("/")
-    public String showIndex(Model model, Principal principal, Member member){
+    public String showIndex(Model model, Principal principal, Member member, Fornitore fornitore){
         if(principal == null){
             return "views/loginForm";
         }

@@ -21,6 +21,40 @@
                 <p sec:authorize="isAuthenticated()">First Name : <span sec:authorize="isAuthenticated()" th:text="${members.firstName}"></span></p>
                 <p sec:authorize="isAuthenticated()">Last Name : <span sec:authorize="isAuthenticated()" th:text="${members.lastName}"></span></p>
                 <p sec:authorize="isAuthenticated()">e - mail : <span sec:authorize="isAuthenticated()" th:text="${members.email}"></span></p>
+                <p th:text="@{/fornitori}"></p>
+                <p th:action="@{/fornitori}" ></p>
+
+
+
+
+
+
+
+                <table>
+                    <tr>
+                        <th>PIVA</th>
+                        <th>NOme</th>
+                        <th>sede</th>
+                    </tr>
+                    <tbody>
+                    <tr th:each="fornitore: ${allFornitore}">
+                        <td th:text="${fornitore.piva}"></td>
+                        <td th:text="${fornitore.nome}"></td>
+                        <td th:text="${fornitore.sede}"></td>
+
+                    </tr>
+                    </tbody>
+                    <tr th:action="${fornitore}" >
+                        <td th:text="${piva}"></td>
+                        <td th:text="${nome}"></td>
+                        <td th:text="${sede}"></td>
+                    </tr>
+
+
+
+                </table>
+
+
             </div>
             <a sec:authorize="!isAuthenticated()" class="btn btn-lg btn-primary" href="/register" role="button">Register &raquo;</a>
             <a sec:authorize="!isAuthenticated()" class="btn btn-lg btn-primary" href="/login" role="button">Login &raquo;</a>

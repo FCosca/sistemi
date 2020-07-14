@@ -29,11 +29,16 @@ public class MateriaPrima {
     private List<OrdineMateriaPrima> ordineMateriaPrima;
 
 
+    public List<Fornitore> getFornitore() {
+        return fornitore;
+    }
 
+    public List<OrdineMateriaPrima> getOrdineMateriaPrima() {
+        return ordineMateriaPrima;
+    }
+    public void setFornitore(List<Fornitore> fornitore){this.fornitore = fornitore;}
 
-
-
-    public MateriaPrima(Integer codice,  String descrizione,  Integer disponibilita,  String magazzino){
+    public MateriaPrima(Integer codice, String descrizione, Integer disponibilita, String magazzino){
         this.codice = codice;
         this.descrizione = descrizione;
         this.disponibilita = disponibilita;

@@ -29,8 +29,11 @@ public class Fornitore {
     private OrdineMateriaPrima ordineMateriaPrima;
 
 
+    public List<MateriaPrima> getMateriaPrima() {
+        return materiaPrima;
+    }
 
-
+    public void setMateriaPrima(List<MateriaPrima> materiaPrima){this.materiaPrima = materiaPrima;}
 
     public Fornitore(String nome, String sede, String piva){
         this.nome = nome;
