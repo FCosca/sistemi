@@ -19,7 +19,7 @@ public class OrdineMateriaPrimaController {
         return new ResponseEntity<>(ordineMateriaPrimaService.allOrdine(), HttpStatus.OK);
     }//getAll
 
-    @PostMapping("/Add/OrdineMateriPrima")
+    @PostMapping("/OrdineMateriPrima/add")
     public ResponseEntity create (@RequestBody OrdineMateriaPrima ordineMateriaPrima){
         OrdineMateriaPrima oMP = null;
         oMP = ordineMateriaPrimaService.addOrdine(ordineMateriaPrima);

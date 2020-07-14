@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css">
+    <link rel="stylesheet" href="style.css">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div class="bentornato">
+    <h2> Bentornato Direttore</h2>
+
+    <h3>Lista Fornitori</h3>
+
+
+
+
+
+    <table  ALIGN="center">
+
+        <thead>
+        <tr><th></th><th>Nome</th><th>Sede</th></tr>
+        </thead>
+
+        <tbody>
+        <tr><td>IT23452342345</td><td>azienda1</td><td>via Popilia</td></tr>
+        <tr><td>IT98765467879</td><td>azienda2</td><td>via Quattromiglia</td></tr>
+        <tr><td>IT23452342345</td><td>azienda3</td><td>via Panebianco</td></tr>
+        </tbody>
+    </table>
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Aggiungi Fornitore</button>
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+            </div>
+
+            <div class="container">
+
+                <label for="uname"><b>P.IVA</b></label>
+                <input type="text" placeholder="Enter P.IVA" name="P_IVA" required>
+                <label for="uname"><b>Nome</b></label>
+                <input type="text" placeholder="Enter Nome" name="nome" required>
+                <label for="uname"><b>Sede</b></label>
+                <input type="text" placeholder="Enter sede" name="sede" required>
+
+
+                <button type="submit">Rimuovi Fornitore</button>
+
+            </div>
+    </div>
+
+    <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Rimuovi Fornitore</button>
+    <div id="id02" class="modal">
+
+        <form class="modal-content animate" action="" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+            </div>
+
+            <div class="container">
+                <label for="uname"><b>P.IVA</b></label>
+                <input type="text" placeholder="Enter P.IVA" name="P_IVA" required>
+
+                <label for="psw"><b>Nome</b></label>
+                <input type="password" placeholder="Enter nome" name="nome" required>
+
+
+
+                <button type="submit">Aggiungi Fornitore</button>
+
+            </div>
+    </div>
+    <button onclick="document.getElementById('id03').style.display='block'" style="width:auto;">Cerca Fornitore</button>
+
+
+
+</div>
+</body>
+</html>
