@@ -17,44 +17,42 @@ public class FornitoreService {
     FornitoreRepository fornitoreRepository;
 
     @Transactional(readOnly = true)
-    public List<Fornitore> allFornitore() { return fornitoreRepository.findAll();}
+    public List<Fornitore> allFornitore() {
+        return fornitoreRepository.findAll();
+    }
 
     @Transactional(readOnly = true)
-    public Fornitore getByPIva(String pIva){
+    public Fornitore getByPIva(String pIva) {
         return fornitoreRepository.findFornitoreByPIVA(pIva);
     }//getByPIva
 
     @Transactional(readOnly = true)
-    public List<Fornitore> getByNome(String Nome){
+    public List<Fornitore> getByNome(String Nome) {
         return fornitoreRepository.findByNome(Nome);
     }//getByNome
 
     @Transactional(readOnly = true)
-    public List<Fornitore> getBySede(String sede){
+    public List<Fornitore> getBySede(String sede) {
         return fornitoreRepository.findBySede(sede);
     }//getBySede
 
 
-
-
     @Transactional
     public Fornitore addFornitore(Fornitore fornitore) throws PivaGiaEsistenteException {
-        if(fornitoreRepository.existsByPIVA(fornitore.getPIVA())){
+        if (fornitoreRepository.existsByPIVA(fornitore.getPIVA())) {
             throw new PivaGiaEsistenteException();
         }//if
         return fornitoreRepository.save(fornitore);
     }//addFornitore
 
     @Transactional
-    public Fornitore deleteFornitore(Fornitore fornitore) throws PivaNonEsiste{
-        if(!fornitoreRepository.existsByPIVA(fornitore.getPIVA())){
+    public void deleteFornitore(String pIva) throws PivaNonEsiste {
+        Fornitore f = fornitoreRepository.findFornitoreByPIVA(pIva);
+        if (f == null) {
             throw new PivaNonEsiste();
-            }
-        fornitoreRepository.delete(fornitore);
-        return fornitore;
-
+        }
+        fornitoreRepository.delete(f);
     }
-
 
 
 }//FornitoreService

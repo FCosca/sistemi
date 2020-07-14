@@ -4,7 +4,6 @@ package web.sistemi.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import web.sistemi.entities.Fornitore;
 import web.sistemi.services.FornitoreService;
@@ -12,7 +11,6 @@ import web.sistemi.supporto.PivaGiaEsistenteException;
 import web.sistemi.supporto.PivaNonEsiste;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class FornitoreController {
@@ -27,59 +25,60 @@ public class FornitoreController {
     }//getAll
 
     @GetMapping("/fornitori/{PIVA}")
-    public ResponseEntity getByPiva(@PathVariable("PIVA") String PIVA){
+    public ResponseEntity getByPiva(@PathVariable("PIVA") String PIVA) {
         Fornitore fornitore = fornitoreService.getByPIva(PIVA);
-        if(fornitore == null){
-            return new ResponseEntity<>("Nessun risultato!",HttpStatus.OK);
+        if (fornitore == null) {
+            return new ResponseEntity<>("Nessun risultato!", HttpStatus.OK);
         }//if
         return new ResponseEntity<>(fornitore, HttpStatus.OK);
     }//getByPiva
 
     @GetMapping("/fornitori/bynome/{nome}")
-    public ResponseEntity getByNome(@PathVariable("nome") String nome){
+    public ResponseEntity getByNome(@PathVariable("nome") String nome) {
         List<Fornitore> fornitori = fornitoreService.getByNome(nome);
-        if(fornitori.size() == 0){
-            return new ResponseEntity<>("Nessun risultato!",HttpStatus.OK);
+        if (fornitori.size() == 0) {
+            return new ResponseEntity<>("Nessun risultato!", HttpStatus.OK);
         }//if
         return new ResponseEntity<>(fornitori, HttpStatus.OK);
     }//getByNome
 
     @GetMapping("/fornitori/bysede/{sede}")
-    public ResponseEntity getBySede(@PathVariable("sede") String sede){
+    public ResponseEntity getBySede(@PathVariable("sede") String sede) {
         List<Fornitore> fornitori = fornitoreService.getBySede(sede);
-        if(fornitori.size() == 0){
-            return new ResponseEntity<>("Nessun risultato!",HttpStatus.OK);
+        if (fornitori.size() == 0) {
+            return new ResponseEntity<>("Nessun risultato!", HttpStatus.OK);
         }//if
         return new ResponseEntity<>(fornitori, HttpStatus.OK);
     }//getBySede
 
 
     @PostMapping("/fornitori/add")
-    public ResponseEntity create(@RequestBody Fornitore fornitore) throws PivaGiaEsistenteException{
+    public ResponseEntity create(@RequestBody Fornitore fornitore) throws PivaGiaEsistenteException {
         Fornitore f = null;
-        try{
+        try {
             f = fornitoreService.addFornitore(fornitore);
-        }catch(PivaGiaEsistenteException e){
+        } catch (PivaGiaEsistenteException e) {
             return new ResponseEntity<>("PIVA già esistente", HttpStatus.BAD_REQUEST);
         }//try
         return new ResponseEntity<>(f, HttpStatus.OK);
     }//create
 
 
-
-    @DeleteMapping("/fornitori/delete/{PIVA}")
-    public ResponseEntity delete(@RequestBody Fornitore fornitore) throws PivaNonEsiste {
-        Fornitore f = null;
-        try{
-            f = fornitoreService.deleteFornitore(fornitore);
-        }catch (PivaNonEsiste e){
-            return new ResponseEntity<>( "impossibile eliminarlo ", HttpStatus.BAD_REQUEST);
+    @DeleteMapping("/fornitori/delete/{pIva}")
+    public ResponseEntity delete(
+//            non serve l'oggetto fornitore in caso di delete ma ci si basa sull'id di solito
+//            @RequestBody Fornitore fornitore
+            @PathVariable("pIva") String pIva
+    ) {
+        try {
+            fornitoreService.deleteFornitore(pIva);
+        } catch (PivaNonEsiste e) {
+            return new ResponseEntity<>("impossibile eliminarlo ", HttpStatus.BAD_REQUEST); //TODO per le eccezioni é meglio usare un global exception handler per uniformare il tutto
         }
-        return new ResponseEntity<>(f, HttpStatus.OK);
+        return new ResponseEntity<String>("elimintato", HttpStatus.OK); //TODO in genere si restituisce in output un json non una string raw
 
 
     }
 
 
-    
 }//FornitoreController
