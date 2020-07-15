@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import web.sistemi.entities.Fornitore;
 import web.sistemi.services.FornitoreService;
 import web.sistemi.supporto.PivaGiaEsistenteException;
@@ -34,6 +35,18 @@ public class FornitoreController {
         return new ResponseEntity<>(fornitore, HttpStatus.OK);
     }//getByPiva
 
+  /*  @GetMapping("/fornitori/{PIVA}")
+    public ModelAndView getByPiva(@PathVariable("PIVA") String PIVA) {
+        Fornitore fornitore = fornitoreService.getByPIva(PIVA);
+        if (fornitore == null) {
+            return new ModelAndView("Nessun risultato!", HttpStatus.OK);
+        }//if
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/fornitori/");
+        return mv;
+
+    }//getByPiva
+*/
     @GetMapping("/fornitori/bynome/{nome}")
     public ResponseEntity getByNome(@PathVariable("nome") String nome) {
         List<Fornitore> fornitori = fornitoreService.getByNome(nome);

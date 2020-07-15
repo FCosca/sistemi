@@ -21,30 +21,53 @@
                 <p sec:authorize="isAuthenticated()">First Name : <span sec:authorize="isAuthenticated()" th:text="${members.firstName}"></span></p>
                 <p sec:authorize="isAuthenticated()">Last Name : <span sec:authorize="isAuthenticated()" th:text="${members.lastName}"></span></p>
                 <p sec:authorize="isAuthenticated()">e - mail : <span sec:authorize="isAuthenticated()" th:text="${members.email}"></span></p>
-          <!--      <input type="button" onclick="window.location.href='/fornitori'" value="mostraFornitori"/>
-                <p th:text="${fornitori.nome}"> </p>
--->
-          <!--      <form autocomplete="off" th:action="@{|/fornitori/${fornitori.piva}|}"
-                      th:object="${fornitore}" method="get" class="form-horizontal"
+               <input type="button" onclick="window.location.href='/fornitori'" value="mostraFornitori"/>
+
+        <!--        <form autocomplete="off" th:action="@{|/fornitori/#{fornitori.piva}|}"
+                      th:object="${fornitori}" method="get" class="form-horizontal"
                       role="form">
                     <input type="text" id="fPiva" name="piva"  th:placeholder="piva"
                            class="form-control" />
                     <button type="submit" class="add">cerca </button>
-                </form> -->
-
-        <!--        <form action="/fornitori/" method="get" id="fpiva">
+             </form> -->
+              <!--  <form action="/fornitori/" method="get" id="fpiva">
                 <label for="fpiva">PIVA:</label>
                 <input type="text" id="PIVA" name="PIVA"><br><br>
                 </form>
-                <button type="submit" form="fpiva" value="Submit">Cerca</button>
-
-                -->
+                <button type="submit" form="fpiva" value="Submit">Cerca</button> -->
 
 
 
+          <form id="ricercaByPivaForm">
+                    <div class="container">
+                        <label form="piva"><b>CERCA FORNITORE TRAMITE PIVA</b></label>
+                        <input type="text" placeholder="Enter piva" name="piva" required>
+                        <button type="submit">Cerca</button>
+                    </div>
+                </form>
 
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const ricercaByPivaForm = document.getElementById('ricercaByPivaForm');
+                        ricercaByPivaForm.addEventListener('submit', ($event) => {
+                            $event.preventDefault();
+                            const pivaControlElement = [...ricercaByPivaForm.elements].find(i => i.name === 'piva');
+                            console.info('-> cerco tutti i fornitori per p.iva = ' + pivaControlElement.value);
+                            // qui la chiamata fetch.
+                            /*
 
+                            fetch('qualcosa').then((res) => {
+                                // qui l'elaborazione del risultato.
+                            }).catch((err) => {
+                                // qui l'elaborazione dell'errore.
+                            });
+                            */
 
+                            fetch("/fornitori/{piva}").then(response => response.json())
+                                .then(data => console.log(data))
+                        });
+                    });
+                </script>
             </div>
 
 
