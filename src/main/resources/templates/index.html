@@ -13,7 +13,7 @@
         <div class="jumbotron">
             <h1>Bentornato</h1>
             <p class="lead">Questa è la tua pagina Personale</p>
-            <p Date example; th:text="${date}"></p>
+
 
             <p sec:authorize="isAuthenticated()">Username: <span sec:authorize="isAuthenticated()" th:text="${#authentication.getPrincipal().getUsername()}"></span></p>
             <div class="memberInformation">
@@ -21,10 +21,32 @@
                 <p sec:authorize="isAuthenticated()">First Name : <span sec:authorize="isAuthenticated()" th:text="${members.firstName}"></span></p>
                 <p sec:authorize="isAuthenticated()">Last Name : <span sec:authorize="isAuthenticated()" th:text="${members.lastName}"></span></p>
                 <p sec:authorize="isAuthenticated()">e - mail : <span sec:authorize="isAuthenticated()" th:text="${members.email}"></span></p>
+          <!--      <input type="button" onclick="window.location.href='/fornitori'" value="mostraFornitori"/>
+                <p th:text="${fornitori.nome}"> </p>
+-->
+          <!--      <form autocomplete="off" th:action="@{|/fornitori/${fornitori.piva}|}"
+                      th:object="${fornitore}" method="get" class="form-horizontal"
+                      role="form">
+                    <input type="text" id="fPiva" name="piva"  th:placeholder="piva"
+                           class="form-control" />
+                    <button type="submit" class="add">cerca </button>
+                </form> -->
+
+        <!--        <form action="/fornitori/" method="get" id="fpiva">
+                <label for="fpiva">PIVA:</label>
+                <input type="text" id="PIVA" name="PIVA"><br><br>
+                </form>
+                <button type="submit" form="fpiva" value="Submit">Cerca</button>
+
+                -->
+
+
+
 
 
 
             </div>
+
 
             <a sec:authorize="!isAuthenticated()" class="btn btn-lg btn-primary" href="/register" role="button">Register &raquo;</a>
             <a sec:authorize="!isAuthenticated()" class="btn btn-lg btn-primary" href="/login" role="button">Login &raquo;</a>
@@ -33,5 +55,6 @@
     </main>
 
 </div>
+
 </body>
 </html>

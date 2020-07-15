@@ -27,12 +27,13 @@ public class MateriaPrima {
     @ManyToMany(mappedBy = "materiaPrima")
     private List<OrdineMateriaPrima> ordineMateriaPrima;
 
+    @ManyToMany(mappedBy = "materiaPrima")
+    private List<Fornitore> fornitore;
 
 
 
-    public List<OrdineMateriaPrima> getOrdineMateriaPrima() {
-        return ordineMateriaPrima;
-    }
+
+
 
 
     public MateriaPrima(Integer codice, String descrizione, Integer disponibilita, String magazzino){
