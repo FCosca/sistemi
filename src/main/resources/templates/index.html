@@ -21,7 +21,7 @@
                 <p sec:authorize="isAuthenticated()">First Name : <span sec:authorize="isAuthenticated()" th:text="${members.firstName}"></span></p>
                 <p sec:authorize="isAuthenticated()">Last Name : <span sec:authorize="isAuthenticated()" th:text="${members.lastName}"></span></p>
                 <p sec:authorize="isAuthenticated()">e - mail : <span sec:authorize="isAuthenticated()" th:text="${members.email}"></span></p>
-               <input type="button" onclick="window.location.href='/fornitori'" value="mostraFornitori"/>
+         <!--      <input type="button" onclick="window.location.href='/fornitori'" value="mostraFornitori"/> -->
 
         <!--        <form autocomplete="off" th:action="@{|/fornitori/#{fornitori.piva}|}"
                       th:object="${fornitori}" method="get" class="form-horizontal"
@@ -38,7 +38,7 @@
 
 
 
-          <form id="ricercaByPivaForm">
+     <!--     <form id="ricercaByPivaForm">
                     <div class="container">
                         <label form="piva"><b>CERCA FORNITORE TRAMITE PIVA</b></label>
                         <input type="text" placeholder="Enter piva" name="piva" required>
@@ -63,11 +63,137 @@
                             });
                             */
 
-                            fetch("/fornitori/{piva}").then(response => response.json())
+                            fetch("/fornitori/"+input.value).then(response => response.json())
                                 .then(data => console.log(data))
                         });
                     });
+                </script> -->
+                <div>
+                    <p> Mostra tutti i fornitori</p>
+                    <button id="submit">Mostra Fornitori</button>
+                    <script>
+                        const mos = document.getElementById("submit");
+                        mos.onclick = () => {
+                            fetch(`fornitori/`)
+                                .then (res => res.json())
+                                .then ( data => console.log(data))
+                        }
+                    </script>
+                </div>
+                <br>
+
+                <div>
+                    <p>Ricercare un Fornitore tramite P.IVA</p>
+                <input id="piva" type="text" placeholder="Enter piva"  required>
+                <button id="submit-piva">Cerca</button>
+                <script>
+                    const input = document.getElementById("piva");
+                    const btn = document.getElementById("submit-piva");
+                    btn.onclick = () => {
+                        let pIva = input.value;
+                        fetch(`fornitori/${pIva}`)
+                            .then (res => res.json())
+                            .then ( data => console.log(data))
+                    }
                 </script>
+                </div>
+                <br>
+
+                <div>
+                    <p>Ricercare un Fornitore tramite nome</p>
+                <input id="nome" type="text" placeholder="Enter nome"  required>
+                <button id="submit-nome">Cerca</button>
+                <script>
+                    const input1 = document.getElementById("nome");
+                    const btn1 = document.getElementById("submit-nome");
+                    btn1.onclick = () => {
+                        let nome = input1.value;
+                        fetch(`fornitori/bynome/${nome}`)
+                            .then (res => res.json())
+                            .then ( data => console.log(data))
+                    }
+                </script>
+
+            </div>
+                <br>
+            <div>
+                <p>Ricercare un Fornitore tramite sede</p>
+                <input id="sede" type="text" placeholder="Enter sede"  required>
+                <button id="submit-sede">Cerca</button>
+                <script>
+                    const input2 = document.getElementById("sede");
+                    const btn2 = document.getElementById("submit-sede");
+                    btn2.onclick = () => {
+                        let sede = input2.value;
+                        fetch(`fornitori/bysede/${sede}`)
+                            .then (res => res.json())
+                            .then ( data => console.log(data))
+                    }
+                </script>
+            </div>
+                <br>
+            <div>
+                <p>Ricercare una Materia Prima tramite codice</p>
+                <input id="codice" type="text" placeholder="Enter codice"  required>
+                <button id="submit-codice">Cerca</button>
+                <script>
+                    const input4 = document.getElementById("codice");
+                    const btn4 = document.getElementById("submit-codice");
+                    btn4.onclick = () => {
+                        let codice = input4.value;
+                        fetch(`materiaPrima/${codice}`)
+                            .then (res => res.json())
+                            .then ( data => console.log(data))
+                    }
+                </script>
+            </div>
+                <br>
+                <div>
+                    <input id="dpiva" type="text" placeholder="Enter piva"  required>
+                    <button id="submit-dpiva">Delete</button>
+
+                    <script>
+                        const input5 = document.getElementById("dpiva");
+                        const btn5 = document.getElementById("submit-dpiva");
+                        btn5.onclick = () => {
+                            let dpiva = input5.value;
+                            fetch(`fornitori/delete/${dpiva}`, POST)
+                                .then (res => res.json())
+                                .then ( data => console.log(data))
+                        }
+                    </script>
+                </div>
+
+                <br>
+
+                <div>
+                    <input id="apiva" type="text" placeholder="Enter piva"  required>
+                    <input id="anome" type="text" placeholder="Enter nome"  required>
+                    <input id="asede" type="text" placeholder="Enter sede"  required>
+                    <button id="submit-apiva">Aggiungi Fornitore</button>
+
+                    <script>
+                        const input6a = document.getElementById("apiva");
+                        const input6b = document.getElementById("anome");
+                        const input6c= document.getElementById("asede");
+                        const btn6 = document.getElementById("submit-apiva");
+
+                        btn6.onclick = () => {
+                            var data = new FormData();
+                            data.append("json", JSON.stringify(input6a, input6b, input6c));
+
+                            fetch(`fornitori/add`, {
+                                method: "POST",
+                                body:data
+                            })
+                                .then(function(res){ return res.json(); })
+                                .then(function(data){ console.log( JSON.stringify( data ) ) })
+                        }
+                    </script>
+                </div>
+
+
+
             </div>
 
 

@@ -12,7 +12,6 @@ public interface FornitoreRepository extends JpaRepository<Fornitore, String> {
     @Override
     List<Fornitore> findAll();
 
-  //  @Query("SELECT f FROM Fornitore f WHERE f.PIVA=1")
     Fornitore findFornitoreByPIVA(String PIVA);
 
 
