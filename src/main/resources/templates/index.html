@@ -149,6 +149,7 @@
             </div>
                 <br>
                 <div>
+                    <p>Elimina un Fornitore tramite PIVA</p>
                     <input id="dpiva" type="text" placeholder="Enter piva"  required>
                     <button id="submit-dpiva">Delete</button>
 
@@ -156,17 +157,22 @@
                         const input5 = document.getElementById("dpiva");
                         const btn5 = document.getElementById("submit-dpiva");
                         btn5.onclick = () => {
-                            let dpiva = input5.value;
-                            fetch(`fornitori/delete/${dpiva}`, POST)
-                                .then (res => res.json())
-                                .then ( data => console.log(data))
-                        }
+
+                            let PIVA = input5.value;
+                                fetch(`fornitori/delete/${PIVA}`, {
+                                    method: "DELETE",
+
+                                })
+                                    .then(function(res){ res.json(); })
+                                    .then(function(data){ console.log(data) })
+                            }
                     </script>
                 </div>
 
                 <br>
 
                 <div>
+                    <p>Aggiungere un nuovo Fornitore</p>
                     <input id="apiva" type="text" placeholder="Enter piva"  required>
                     <input id="anome" type="text" placeholder="Enter nome"  required>
                     <input id="asede" type="text" placeholder="Enter sede"  required>
@@ -178,19 +184,60 @@
                         const input6c= document.getElementById("asede");
                         const btn6 = document.getElementById("submit-apiva");
 
-                        btn6.onclick = () => {
-                            var data = new FormData();
-                            data.append("json", JSON.stringify(input6a, input6b, input6c));
 
-                            fetch(`fornitori/add`, {
+                        btn6.onclick = () => {
+
+                            const obj = {
+                                piva: input6a.value,
+                                nome: input6b.value,
+                                sede: input6c.value
+                            }
+                            fetch(`/fornitori/add`, {
                                 method: "POST",
-                                body:data
+                                headers: {  'Accept': 'application/json',
+                                    'Content-Type': 'application/json' },
+                                body:JSON.stringify(obj)
                             })
                                 .then(function(res){ return res.json(); })
-                                .then(function(data){ console.log( JSON.stringify( data ) ) })
+                                .then(function(data){ console.log(data) })
                         }
                     </script>
                 </div>
+                    <div>
+                        <p>Aggiungere Ordine Materia Prima</p>
+                        <input id="acodice" type="text" placeholder="Enter Codice"  required>
+                        <input id="adescrizione" type="text" placeholder="Enter descrizione"  required>
+                        <input id="aquanita" type="text" placeholder="Enter Quantità"  required>
+                        <button id="submit-aOMP">Aggiungi Ordine Materia Prima</button>
+
+                        <script>
+                            const input7a = document.getElementById("acodice");
+                            const input7b = document.getElementById("adescrizione");
+                            const input7c= document.getElementById("aquantita");
+                            const btn7 = document.getElementById("submit-aOMP");
+
+
+                            btn7.onclick = () => {
+
+                                const obj1 = {
+                                    codice: input7a.value,
+                                    descrizione: input7b.value,
+                                    quantita: input7c.value
+                                }
+                                fetch(`/OrdineMateriaPrima/add`, {
+                                    method: "POST",
+                                    headers: {  'Accept': 'application/json',
+                                        'Content-Type': 'application/json' },
+                                    body:JSON.stringify(obj1)
+                                })
+                                    .then(function(res){ return res.json(); })
+                                    .then(function(data){ console.log(data) })
+                            }
+                        </script>
+                </div>
+
+            </div>
+
 
 
 

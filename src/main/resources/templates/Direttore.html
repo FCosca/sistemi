@@ -1,10 +1,161 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/data/jaxb"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Direttore</title>
 </head>
 <body>
+<div layout:fragment="content" class="container" >
+    <main role="main" class="container">
+        <div class="jumbotron">
+            <h1>Bentornato Direttore</h1>
+            <p class="lead">Questa è la tua pagina Personale</p>
+
+
+            <p sec:authorize="isAuthenticated()">Username: <span sec:authorize="isAuthenticated()" th:text="${#authentication.getPrincipal().getUsername()}"></span></p>
+            <div class="memberInformation">
+                <header> Member Information</header>
+                <p sec:authorize="isAuthenticated()">First Name : <span sec:authorize="isAuthenticated()" th:text="${members.firstName}"></span></p>
+                <p sec:authorize="isAuthenticated()">Last Name : <span sec:authorize="isAuthenticated()" th:text="${members.lastName}"></span></p>
+                <p sec:authorize="isAuthenticated()">e - mail : <span sec:authorize="isAuthenticated()" th:text="${members.email}"></span></p>
+
+                <div>
+                    <p> Mostra tutti i fornitori</p>
+                    <button id="submit">Mostra Fornitori</button>
+                    <p id="risultato2"></p>
+                    <script>
+                        const mos = document.getElementById("submit");
+                        mos.onclick = () => {
+                            fetch(`fornitori/`)
+                                .then (res => res.json())
+                                .then ( data => document.getElementById('risultato2').innerHTML=JSON.stringify(data))
+                        }
+                    </script>
+                </div>
+                <br>
+
+                <div>
+                    <p>Ricercare un Fornitore tramite P.IVA</p>
+                    <input id="piva" type="text" placeholder="Enter piva"  required>
+                    <button id="submit-piva">Cerca</button>
+                    <p id="risultato3"></p>
+                    <script>
+                        const input = document.getElementById("piva");
+                        const btn = document.getElementById("submit-piva");
+                        btn.onclick = () => {
+                            let pIva = input.value;
+                            fetch(`fornitori/${pIva}`)
+                                .then (res => res.json())
+                                .then ( data => document.getElementById('risultato3').innerHTML=JSON.stringify(data))
+                        }
+                    </script>
+                </div>
+                <br>
+
+                <div>
+                    <p>Ricercare un Fornitore tramite nome</p>
+                    <input id="nome" type="text" placeholder="Enter nome"  required>
+                    <button id="submit-nome">Cerca</button>
+                    <p id="risultato4"></p>
+                    <script>
+                        const input1 = document.getElementById("nome");
+                        const btn1 = document.getElementById("submit-nome");
+                        btn1.onclick = () => {
+                            let nome = input1.value;
+                            fetch(`fornitori/bynome/${nome}`)
+                                .then (res => res.json())
+                                .then ( data => document.getElementById('risultato4').innerHTML=JSON.stringify(data))
+                        }
+                    </script>
+
+                </div>
+                <br>
+                <div>
+                    <p>Ricercare un Fornitore tramite sede</p>
+                    <input id="sede" type="text" placeholder="Enter sede"  required>
+                    <button id="submit-sede">Cerca</button>
+                    <p id="risultato5"></p>
+                    <script>
+                        const input2 = document.getElementById("sede");
+                        const btn2 = document.getElementById("submit-sede");
+                        btn2.onclick = () => {
+                            let sede = input2.value;
+                            fetch(`fornitori/bysede/${sede}`)
+                                .then (res => res.json())
+                                .then ( data => document.getElementById('risultato5').innerHTML=JSON.stringify(data))
+                        }
+                    </script>
+                </div>
+
+                <br>
+                <div>
+                    <p>Elimina un Fornitore tramite PIVA</p>
+                    <input id="dpiva" type="text" placeholder="Enter piva"  required>
+                    <button id="submit-dpiva">Delete</button>
+                    <p id="risultato6"></p>
+                    <script>
+                        const input5 = document.getElementById("dpiva");
+                        const btn5 = document.getElementById("submit-dpiva");
+                        btn5.onclick = () => {
+
+                            let PIVA = input5.value;
+                            fetch(`fornitori/delete/${PIVA}`, {
+                                method: "DELETE",
+
+                            })
+                                .then(function(res){ res.json(); })
+                                .then(function(data){ document.getElementById('risultato6').innerHTML=JSON.stringify(data)})
+                        }
+                    </script>
+                </div>
+
+                <br>
+
+                <div>
+                    <p>Aggiungere un nuovo Fornitore</p>
+                    <input id="apiva" type="text" placeholder="Enter piva"  required>
+                    <input id="anome" type="text" placeholder="Enter nome"  required>
+                    <input id="asede" type="text" placeholder="Enter sede"  required>
+                    <button id="submit-apiva">Aggiungi Fornitore</button>
+                    <p id="risultato7"></p>
+                    <script>
+                        const input6a = document.getElementById("apiva");
+                        const input6b = document.getElementById("anome");
+                        const input6c= document.getElementById("asede");
+                        const btn6 = document.getElementById("submit-apiva");
+
+
+                        btn6.onclick = () => {
+
+                            const obj = {
+                                piva: input6a.value,
+                                nome: input6b.value,
+                                sede: input6c.value
+                            }
+                            fetch(`/fornitori/add`, {
+                                method: "POST",
+                                headers: {  'Accept': 'application/json',
+                                    'Content-Type': 'application/json' },
+                                body:JSON.stringify(obj)
+                            })
+                                .then(function(res){ return res.json(); })
+                                .then(function(data){ document.getElementById('risultato7').innerHTML=JSON.stringify(data)})
+                        }
+                    </script>
+                </div>
+            </div>
+
+
+            <a sec:authorize="!isAuthenticated()" class="btn btn-lg btn-primary" href="/register" role="button">Register &raquo;</a>
+            <a sec:authorize="!isAuthenticated()" class="btn btn-lg btn-primary" href="/login" role="button">Login &raquo;</a>
+            <a sec:authorize="isAuthenticated()" class="btn btn-lg btn-primary" href="/logout" role="button">Logout &raquo;</a>
+        </div>
+    </main>
+
+</div>
 
 </body>
 </html>

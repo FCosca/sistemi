@@ -46,8 +46,8 @@ public class FornitoreService {
     }//addFornitore
 
     @Transactional
-    public void deleteFornitore(String pIva) throws PivaNonEsiste {
-        Fornitore f = fornitoreRepository.findFornitoreByPIVA(pIva);
+    public void deleteFornitore(String PIVA) throws PivaNonEsiste {
+        Fornitore f = fornitoreRepository.findFornitoreByPIVA(PIVA);
         if (f == null) {
             throw new PivaNonEsiste();
         }

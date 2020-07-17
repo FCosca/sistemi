@@ -82,8 +82,7 @@ public class FornitoreController {
     public ResponseEntity delete(
 //            non serve l'oggetto fornitore in caso di delete ma ci si basa sull'id di solito
 //            @RequestBody Fornitore fornitore
-            @PathVariable("pIva") String pIva
-    ) {
+            @PathVariable("pIva") String pIva) {
         try {
             fornitoreService.deleteFornitore(pIva);
         } catch (PivaNonEsiste e) {

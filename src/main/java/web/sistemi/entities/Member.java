@@ -83,6 +83,12 @@ public class Member {
     public Member() {
     }
 
+    public Member(String email1, String email2){
+        this.email=email1;
+        this.email=email2;
+
+    }
+
     public String getCf() {
         return cf;
     }
